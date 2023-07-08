@@ -16,6 +16,8 @@ class Int(int):
 
     def __new__(cls, value: int) -> "Int":
         """Creates a new instance of the Int class."""
+        if not isinstance(value, int):
+            raise TypeError("Value must be an integer.")
         if not (-(2**53) + 1 <= value <= 2**53 - 1):
             raise ValueError(
                 "Value not within acceptable range (-2^53+1 <= value <= 2^53-1)"
@@ -35,6 +37,8 @@ class UnsignedInt(Int):
 
     def __new__(cls, value: int) -> "UnsignedInt":
         """Creates a new instance of the UnsignedInt class."""
+        if not isinstance(value, int):
+            raise TypeError("Value must be an integer.")
         if not (0 <= value <= 2**53 - 1):
             raise ValueError("Value not within acceptable range (0 <= value <= 2^53-1)")
         return super().__new__(cls, value)
