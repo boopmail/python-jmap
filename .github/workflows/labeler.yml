@@ -6,6 +6,11 @@ on:
       - main
       - master
 
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
 jobs:
   labeler:
     runs-on: ubuntu-latest
