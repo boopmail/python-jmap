@@ -12,6 +12,12 @@ def test_id_creation() -> None:
     assert _id == "test_id"
 
 
+def test_id_generation() -> None:
+    """It returns a safe, valid ID if nothing is passed in."""
+    _id = ID()
+    assert ID.is_safe(_id)
+
+
 def test_id_invalid_length() -> None:
     """It raises a ValueError if the string is too short or too long."""
     with pytest.raises(ValueError):
@@ -27,32 +33,52 @@ def test_id_invalid_characters() -> None:
         ID("test@id")
 
 
-def test_generate_safe_id_length() -> None:
+def test_generate_length() -> None:
     """It generates a safe, valid identifier of the provided length."""
-    _id = ID.generate_safe_id(10)
+    _id = ID.generate(10)
     assert len(_id) == 10
 
 
-def test_generate_safe_id_contents() -> None:
+def test_generate_contents() -> None:
     """It generates a safe, valid identifier that only contains legal characters."""
-    _id = ID.generate_safe_id(10)
+    _id = ID.generate(10)
 
     for char in _id:
         assert char in (string.ascii_letters + string.digits + "_-")
 
 
-def test_generate_safe_id_uniqueness() -> None:
+def test_generate_uniqueness() -> None:
     """It generates a safe, valid identifier with sufficient entropy."""
-    ids = {ID.generate_safe_id(10) for _ in range(1000)}
+    ids = {ID.generate(10) for _ in range(1000)}
     assert len(ids) == 1000
 
 
-def test_is_safe_id() -> None:
+def test_is_safe() -> None:
     """It returns True if the valid is a safe, valid identifier."""
-    # W0212:protected-access
-    assert not ID._is_safe_id("123abc")
-    assert not ID._is_safe_id("-abc123")
-    assert not ID._is_safe_id("123456")
-    assert not ID._is_safe_id("abcNIL123")
-    assert not ID._is_safe_id("abc")
-    assert ID._is_safe_id("abc123")
+    # Safe ID: does not start with dash or digit, does not contain only digits,
+    # does not contain "NIL", and does not differ only in case
+    assert ID.is_safe("abc123") is True
+
+    # Unsafe ID: starts with a digit
+    assert ID.is_safe("1abc123") is False
+
+    # Unsafe ID: starts with a dash
+    assert ID.is_safe("-abc123") is False
+
+    # Unsafe ID: contains only digits
+    assert ID.is_safe("123456") is False
+
+    # Unsafe ID: contains the sequence "NIL"
+    assert ID.is_safe("abcNIL123") is False
+
+    # Unsafe ID: differs only by case
+    assert ID.is_safe("abc") is False
+    assert ID.is_safe("ABC") is False
+
+
+def test_validate_logs_warning_for_unsafe_id() -> None:
+    """It logs a warning if the identifier is not safe."""
+    unsafe_id = "abc"  # All lower case, no digit, hyphen or underscore
+
+    with pytest.warns(UserWarning):
+        ID.validate(unsafe_id)

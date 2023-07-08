@@ -11,7 +11,7 @@ import nox
 
 try:
     from nox_poetry import Session
-    from nox_poetry import session
+    from nox_poetry import session as nox_session
 except ImportError:
     message = f"""\
     Nox failed to import the 'nox-poetry' package.
@@ -22,8 +22,8 @@ except ImportError:
     raise SystemExit(dedent(message)) from None
 
 
-package = "python_jmap"
-python_versions = ["3.10", "3.9", "3.8", "3.7"]
+PACKAGE = "python_jmap"
+PYTHON_VERSIONS = ["3.10", "3.11", "3.9", "3.8", "3.7"]
 nox.needs_version = ">= 2021.6.6"
 nox.options.sessions = (
     "pre-commit",
@@ -110,7 +110,7 @@ def activate_virtualenv_in_precommit_hooks(session: Session) -> None:
                 break
 
 
-@session(name="pre-commit", python=python_versions[0])
+@nox_session(name="pre-commit", python=PYTHON_VERSIONS[0])
 def precommit(session: Session) -> None:
     """Lint using pre-commit."""
     args = session.posargs or [
@@ -138,7 +138,7 @@ def precommit(session: Session) -> None:
         activate_virtualenv_in_precommit_hooks(session)
 
 
-@session(python=python_versions[0])
+@nox_session(python=PYTHON_VERSIONS[0])
 def safety(session: Session) -> None:
     """Scan dependencies for insecure packages."""
     requirements = session.poetry.export_requirements()
@@ -146,7 +146,7 @@ def safety(session: Session) -> None:
     session.run("safety", "check", "--full-report", f"--file={requirements}")
 
 
-@session(python=python_versions)
+@nox_session(python=PYTHON_VERSIONS)
 def mypy(session: Session) -> None:
     """Type-check using mypy."""
     args = session.posargs or ["src", "tests", "docs/conf.py"]
@@ -157,7 +157,7 @@ def mypy(session: Session) -> None:
         session.run("mypy", f"--python-executable={sys.executable}", "noxfile.py")
 
 
-@session(python=python_versions)
+@nox_session(python=PYTHON_VERSIONS)
 def tests(session: Session) -> None:
     """Run the test suite."""
     session.install(".")
@@ -169,7 +169,7 @@ def tests(session: Session) -> None:
             session.notify("coverage", posargs=[])
 
 
-@session(python=python_versions[0])
+@nox_session(python=PYTHON_VERSIONS[0])
 def coverage(session: Session) -> None:
     """Produce the coverage report."""
     args = session.posargs or ["report"]
@@ -182,21 +182,21 @@ def coverage(session: Session) -> None:
     session.run("coverage", *args)
 
 
-@session(python=python_versions[0])
+@nox_session(python=PYTHON_VERSIONS[0])
 def typeguard(session: Session) -> None:
     """Runtime type checking using Typeguard."""
     session.install(".")
     session.install("pytest", "typeguard", "pygments")
-    session.run("pytest", f"--typeguard-packages={package}", *session.posargs)
+    session.run("pytest", f"--typeguard-packages={PACKAGE}", *session.posargs)
 
 
-@session(python=python_versions)
+@nox_session(python=PYTHON_VERSIONS)
 def xdoctest(session: Session) -> None:
     """Run examples with xdoctest."""
     if session.posargs:
-        args = [package, *session.posargs]
+        args = [PACKAGE, *session.posargs]
     else:
-        args = [f"--modname={package}", "--command=all"]
+        args = [f"--modname={PACKAGE}", "--command=all"]
         if "FORCE_COLOR" in os.environ:
             args.append("--colored=1")
 
@@ -205,7 +205,7 @@ def xdoctest(session: Session) -> None:
     session.run("python", "-m", "xdoctest", *args)
 
 
-@session(name="docs-build", python=python_versions[0])
+@nox_session(name="docs-build", python=PYTHON_VERSIONS[0])
 def docs_build(session: Session) -> None:
     """Build the documentation."""
     args = session.posargs or ["docs", "docs/_build"]
@@ -222,7 +222,7 @@ def docs_build(session: Session) -> None:
     session.run("sphinx-build", *args)
 
 
-@session(python=python_versions[0])
+@nox_session(python=PYTHON_VERSIONS[0])
 def docs(session: Session) -> None:
     """Build and serve the documentation with live reloading on file changes."""
     args = session.posargs or ["--open-browser", "docs", "docs/_build"]
