@@ -22,7 +22,7 @@ def test_int_invalid_values() -> None:
 
 def test_int_non_integer_input() -> None:
     """It should raise ValueError for non-integer inputs."""
-    with pytest.raises(ValueError):
+    with pytest.raises(TypeError):
         Int("test")  # Non-integer input
 
 
@@ -42,5 +42,5 @@ def test_unsigned_int_invalid_values() -> None:
 
 def test_unsigned_int_non_integer_input() -> None:
     """It should raise ValueError for non-integer inputs."""
-    with pytest.raises(ValueError):
+    with pytest.raises(TypeError):
         UnsignedInt("test")  # Non-integer input
