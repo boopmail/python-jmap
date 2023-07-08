@@ -45,3 +45,14 @@ def test_generate_safe_id_uniqueness() -> None:
     """It generates a safe, valid identifier with sufficient entropy."""
     ids = {ID.generate_safe_id(10) for _ in range(1000)}
     assert len(ids) == 1000
+
+
+def test_is_safe_id() -> None:
+    """It returns True if the valid is a safe, valid identifier."""
+    # W0212:protected-access
+    assert not ID._is_safe_id("123abc")
+    assert not ID._is_safe_id("-abc123")
+    assert not ID._is_safe_id("123456")
+    assert not ID._is_safe_id("abcNIL123")
+    assert not ID._is_safe_id("abc")
+    assert ID._is_safe_id("abc123")

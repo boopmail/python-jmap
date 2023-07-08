@@ -55,6 +55,27 @@ class ID(str):
             )
 
     @staticmethod
+    def _is_safe_id(id_str: str) -> bool:
+        """Check if the ID is safe.
+
+        A safe ID does not start with a dash or digit, does not contain only digits,
+        does not contain the sequence "NIL", and does not have differing only in case.
+
+        Args:
+            id_str (str): The ID to check.
+
+        Returns:
+            bool: True if the ID is safe, False otherwise.
+        """
+        return not (
+            id_str[0].isdigit()
+            or id_str.startswith("-")
+            or id_str.isdigit()
+            or "NIL" in id_str.upper()
+            or id_str.lower() in {id_str, id_str.upper()}
+        )
+
+    @staticmethod
     def generate_safe_id(length: int = 255) -> "ID":
         """Generate a safe ID.
 
@@ -77,12 +98,12 @@ class ID(str):
         # Create a list of allowed characters
         allowed_characters = string.ascii_letters + string.digits + "_-"
 
-        # Generate a random ID, avoiding IDs that contain only digits or the sequence "NIL"
+        # Generate a random ID, avoiding IDs that are not safe
         while True:
             id_str = secrets.choice(string.ascii_letters) + "".join(
                 secrets.choice(allowed_characters) for _ in range(length - 1)
             )
-            if not id_str.isdigit() and "NIL" not in id_str.upper():
+            if ID._is_safe_id(id_str):
                 break
 
         return ID(id_str)

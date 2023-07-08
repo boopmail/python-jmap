@@ -1,5 +1,6 @@
 """Python JMAP Bindings."""
 
+
 def main() -> None:
     """Python JMAP Bindings."""
 
