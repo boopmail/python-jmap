@@ -46,7 +46,6 @@ class UTCDate(Date):
     >>> d = UTCDate(datetime(2022, 10, 30, 14, 12, 0, tzinfo=timezone.utc))
     >>> print(d)
     "2022-10-30T14:12:00Z"
-    >>> d = UTCDate(datetime(2022, 10, 30, 14, 12, 0))  # Should raise ValueError
     """
 
     def __new__(cls, value: datetime) -> "UTCDate":
