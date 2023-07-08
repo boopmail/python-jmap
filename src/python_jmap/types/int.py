@@ -2,6 +2,7 @@
 
 Spec: https://jmap.io/spec-core.html#the-int-and-unsignedint-data-types
 """
+from typing import cast
 
 
 class Int(int):
@@ -41,4 +42,4 @@ class UnsignedInt(Int):
             raise TypeError("Value must be an integer.")
         if not (0 <= value <= 2**53 - 1):
             raise ValueError("Value not within acceptable range (0 <= value <= 2^53-1)")
-        return super().__new__(cls, value)
+        return cast(UnsignedInt, super().__new__(cls, value))
