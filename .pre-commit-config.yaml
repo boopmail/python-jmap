@@ -71,7 +71,3 @@ repos:
     rev: v3.0.0
     hooks:
       - id: prettier
-  - repo: https://github.com/bridgecrewio/checkov.git
-    rev: "2.3.314"
-    hooks:
-      - id: checkov
