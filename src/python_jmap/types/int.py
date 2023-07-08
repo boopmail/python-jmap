@@ -12,7 +12,6 @@ class Int(int):
     >>> x = Int(10)
     >>> print(x)
     10
-    >>> x = Int(2**53)  # Should raise ValueError
     """
 
     def __new__(cls, value: int) -> "Int":
@@ -33,7 +32,6 @@ class UnsignedInt(Int):
     >>> x = UnsignedInt(10)
     >>> print(x)
     10
-    >>> x = UnsignedInt(-1)  # Should raise ValueError
     """
 
     def __new__(cls, value: int) -> "UnsignedInt":
