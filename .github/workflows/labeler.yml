@@ -3,22 +3,20 @@ name: Labeler
 on:
   push:
     branches:
-      - main
-      - master
-
-permissions:
-  actions: read
-  contents: read
-  security-events: write
+      - "main"
+    paths:
+      - ".github/labels.yml"
+      - ".github/workflows/labeler.yml"
 
 jobs:
   labeler:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the repository
+      - name: Checkout the repository
         uses: actions/checkout@v3
 
       - name: Run Labeler
-        uses: crazy-max/ghaction-github-labeler@v4.1.0
+        uses: crazy-max/ghaction-github-labeler@v4
         with:
-          skip-delete: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          yaml-file: .github/labels.yml
