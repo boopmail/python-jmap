@@ -75,4 +75,3 @@ repos:
     rev: "2.3.314"
     hooks:
       - id: checkov
-        framework: github-actions
