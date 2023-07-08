@@ -1,4 +1,7 @@
-"""JMAP Identifier type."""
+"""JMAP Identifier type.
+
+Spec: https://jmap.io/spec-core.html#the-id-data-type
+"""
 import re
 import secrets
 import string
