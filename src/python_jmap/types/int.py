@@ -6,7 +6,9 @@ from typing import cast
 
 
 class Int(int):
-    """Integer in the range -2^53+1 to 2^53-1.
+    """Helper type for generating JMAP spec-compliant ints.
+
+    Integer must in the range -2^53+1 to 2^53-1.
 
     Example:
     >>> x = Int(10)
@@ -26,7 +28,9 @@ class Int(int):
 
 
 class UnsignedInt(Int):
-    """Integer where the value MUST be in the range 0 to 2^53-1.
+    """Helper type for generating JMAP spec-compliant uints.
+
+    Integer where the value MUST be in the range 0 to 2^53-1.
 
     Example:
     >>> x = UnsignedInt(10)

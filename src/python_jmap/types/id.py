@@ -11,7 +11,7 @@ from typing import Type
 
 
 class ID(str):
-    """JMAP Identifier type.
+    """Helper type for generating JMAP spec-compliant ID strings.
 
     Example:
     >>> id = ID("test_id")
