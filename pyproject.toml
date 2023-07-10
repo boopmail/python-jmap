@@ -45,6 +45,7 @@ xdoctest = {extras = ["colors"], version = ">=0.15.10"}
 myst-parser = {version = ">=0.16.1"}
 nox = "^2023.4.22"
 nox-poetry = "^1.0.2"
+flaky = "^3.7.0"
 
 [tool.poetry.scripts]
 python-jmap = "python_jmap.__main__:main"
