@@ -1,6 +1,6 @@
 """JMAP integer types.
 
-Spec: https://jmap.io/spec-core.html#the-int-and-unsignedint-data-types
+Spec: https://jmap.io/spec-core.html#the-int-and-uint-data-types
 """
 from typing import cast
 
@@ -27,21 +27,21 @@ class Int(int):
         return super().__new__(cls, value)
 
 
-class UnsignedInt(Int):
+class UInt(Int):
     """Helper type for generating JMAP spec-compliant uints.
 
     Integer where the value MUST be in the range 0 to 2^53-1.
 
     Example:
-    >>> x = UnsignedInt(10)
+    >>> x = UInt(10)
     >>> print(x)
     10
     """
 
-    def __new__(cls, value: int) -> "UnsignedInt":
-        """Creates a new instance of the UnsignedInt class."""
+    def __new__(cls, value: int) -> "UInt":
+        """Creates a new instance of the UInt class."""
         if not isinstance(value, int):
             raise TypeError("Value must be an integer.")
         if not (0 <= value <= 2**53 - 1):
             raise ValueError("Value not within acceptable range (0 <= value <= 2^53-1)")
-        return cast(UnsignedInt, super().__new__(cls, value))
+        return cast(UInt, super().__new__(cls, value))

@@ -13,7 +13,7 @@ end-before: <!-- github-only -->
 hidden:
 maxdepth: 1
 ---
-
+api
 usage
 reference
 contributing

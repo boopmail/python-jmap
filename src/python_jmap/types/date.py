@@ -4,8 +4,10 @@ Spec: https://jmap.io/spec-core.html#the-date-and-utcdate-data-types
 """
 from datetime import datetime
 from datetime import timezone
-from typing import Union
-from typing import cast
+from typing import Optional
+
+
+DATE_FORMAT = "%Y-%m-%dT%H:%M:%S"
 
 
 class Date(str):
@@ -24,20 +26,20 @@ class Date(str):
     "2022-10-30T14:12:00.500"
     """
 
-    def __new__(cls, value: Union[datetime, str]) -> "Date":
+    def __new__(cls, value: Optional[datetime] = None) -> "Date":
         """Creates a new instance of the Date class."""
+        if value is None:
+            value = datetime.now()
         if isinstance(value, datetime):
-            date_str = value.strftime("%Y-%m-%dT%H:%M:%S")
+            date_str = value.strftime(DATE_FORMAT)
             if value.microsecond > 0:
                 date_str += f".{value.microsecond // 1000:03d}"
-        elif isinstance(value, str):
-            date_str = value
         else:
-            raise TypeError("Value must be a datetime object or a string.")
+            raise TypeError("Value must be a datetime object or None.")
         return super().__new__(cls, date_str)
 
 
-class UTCDate(Date):
+class UTCDate(str):
     """Helper type for generating JMAP spec-compliant UTC dates.
 
     For example, "2014-10-30T06:12:00Z".
@@ -48,14 +50,16 @@ class UTCDate(Date):
     "2022-10-30T14:12:00Z"
     """
 
-    def __new__(cls, value: datetime) -> "UTCDate":
+    def __new__(cls, value: Optional[datetime] = None) -> "UTCDate":
         """Creates a new instance of the UTCDate class."""
+        if value is None:
+            value = datetime.now(tz=timezone.utc)
         if not isinstance(value, datetime):
-            raise TypeError("Value must be a datetime object.")
+            raise TypeError("Value must be a datetime object or None.")
         if value.tzinfo is not timezone.utc:
             raise ValueError("DateTime object must be in UTC.")
-        date_str = value.strftime("%Y-%m-%dT%H:%M:%S")
+        date_str = value.strftime(DATE_FORMAT)
         if value.microsecond > 0:
             date_str += f".{value.microsecond // 1000:03d}"
         date_str += "Z"
-        return cast(UTCDate, super().__new__(cls, date_str))
+        return super().__new__(cls, date_str)

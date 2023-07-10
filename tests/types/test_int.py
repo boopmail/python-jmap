@@ -2,7 +2,7 @@
 import pytest
 
 from python_jmap.types.int import Int
-from python_jmap.types.int import UnsignedInt
+from python_jmap.types.int import UInt
 
 
 def test_int_edge_cases() -> None:
@@ -28,19 +28,19 @@ def test_int_non_integer_input() -> None:
 
 def test_unsigned_int_edge_cases() -> None:
     """It should allow integers between 0 and 2^53-1 (inclusive)."""
-    assert UnsignedInt(0) == 0
-    assert UnsignedInt(2**53 - 1) == 2**53 - 1
+    assert UInt(0) == 0
+    assert UInt(2**53 - 1) == 2**53 - 1
 
 
 def test_unsigned_int_invalid_values() -> None:
     """It should raise ValueError for numbers outside this range."""
     with pytest.raises(ValueError):
-        UnsignedInt(-1)
+        UInt(-1)
     with pytest.raises(ValueError):
-        UnsignedInt(2**53)
+        UInt(2**53)
 
 
 def test_unsigned_int_non_integer_input() -> None:
     """It should raise ValueError for non-integer inputs."""
     with pytest.raises(TypeError):
-        UnsignedInt("test")  # type: ignore
+        UInt("test")  # type: ignore
