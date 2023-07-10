@@ -5,4 +5,4 @@ from python_jmap.types import Int
 from python_jmap.types import UInt
 
 
-__ALL__ = [Date, ID, Int, UInt]
+__all__ = ["Date", "ID", "Int", "UInt"]
