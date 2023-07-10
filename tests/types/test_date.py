@@ -3,7 +3,7 @@ from datetime import datetime
 from datetime import timezone
 
 import pytest
-from flaky import flaky  # type: ignore[import-error]
+from flaky import flaky  # type: ignore[import]
 
 from python_jmap.types.date import Date
 from python_jmap.types.date import UTCDate
