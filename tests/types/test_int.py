@@ -1,5 +1,6 @@
 """Unit tests for JMAP integer types."""
 import pytest
+from typeguard import suppress_type_checks
 
 from python_jmap.types.int import Int
 from python_jmap.types.int import UInt
@@ -20,6 +21,7 @@ def test_int_invalid_values() -> None:
         Int(2**53)
 
 
+@suppress_type_checks()  # type: ignore[misc]
 def test_int_non_integer_input() -> None:
     """It should raise ValueError for non-integer inputs."""
     with pytest.raises(TypeError):
@@ -40,6 +42,7 @@ def test_unsigned_int_invalid_values() -> None:
         UInt(2**53)
 
 
+@suppress_type_checks()  # type: ignore[misc]
 def test_unsigned_int_non_integer_input() -> None:
     """It should raise ValueError for non-integer inputs."""
     with pytest.raises(TypeError):
