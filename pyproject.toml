@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python-jmap"
-version = "0.0.1"
+version = "0.0.2"
 description = "Python JMAP Bindings"
 authors = ["Josh Finch <josh@boop.email>"]
 license = "MIT"
