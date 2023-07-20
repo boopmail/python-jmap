@@ -27,3 +27,16 @@ template: |
   ## Changes
 
   $CHANGES
+version-resolver:
+  major:
+    labels:
+      - "major"
+  minor:
+    labels:
+      - "minor"
+  patch:
+    labels:
+      - "patch"
+  default: patch
+name-template: "v$RESOLVED_VERSION"
+tag-template: "v$RESOLVED_VERSION"
