@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/boopmail/python-jmap" rel="noopener">
- <img width=200px height=200px src="https://github.com/boopmail/python-jmap/blob/main/docs/python-jmap-logo.png" alt="Python-JMAP logo"></a>
+ <img width=500px height=235px src="https://github.com/boopmail/python-jmap/blob/main/docs/python-jmap-logo.png" alt="Python-JMAP logo"></a>
 </p>
 
 <h3 align="center">Python-JMAP</h3>
