@@ -1,8 +1,8 @@
 """Unit tests for JMAP integer types."""
 import pytest
 
-from python_jmap.types.int import Int
-from python_jmap.types.int import UInt
+from python_jmap.types import Int
+from python_jmap.types import UInt
 
 
 def test_int_edge_cases() -> None:
