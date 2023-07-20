@@ -46,4 +46,4 @@ jobs:
           poetry build --ansi
 
       - name: Publish package on PyPI
-        uses: pypa/gh-action-pypi-publish@v1.8.7
+        uses: pypa/gh-action-pypi-publish@v1.8.8
