@@ -21,7 +21,7 @@ def test_int_invalid_values() -> None:
         Int(2**53)
 
 
-@suppress_type_checks()  # type: ignore[misc]
+@suppress_type_checks
 def test_int_non_integer_input() -> None:
     """It should raise ValueError for non-integer inputs."""
     with pytest.raises(TypeError):
@@ -42,7 +42,7 @@ def test_unsigned_int_invalid_values() -> None:
         UInt(2**53)
 
 
-@suppress_type_checks()  # type: ignore[misc]
+@suppress_type_checks
 def test_unsigned_int_non_integer_input() -> None:
     """It should raise ValueError for non-integer inputs."""
     with pytest.raises(TypeError):
