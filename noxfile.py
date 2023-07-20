@@ -23,7 +23,7 @@ except ImportError:
 
 
 PACKAGE = "python_jmap"
-PYTHON_VERSIONS = ["3.10", "3.11", "3.9", "3.8", "3.7"]
+PYTHON_VERSIONS = ["3.10", "3.11", "3.9", "3.8"]
 nox.needs_version = ">= 2021.6.6"
 nox.options.sessions = (
     "pre-commit",
@@ -151,7 +151,7 @@ def mypy(session: Session) -> None:
     """Type-check using mypy."""
     args = session.posargs or ["src", "tests", "docs/conf.py"]
     session.install(".")
-    session.install("mypy", "pytest")
+    session.install("mypy", "pytest", "typeguard")
     session.run("mypy", *args)
     if not session.posargs:
         session.run("mypy", f"--python-executable={sys.executable}", "noxfile.py")
@@ -161,7 +161,7 @@ def mypy(session: Session) -> None:
 def tests(session: Session) -> None:
     """Run the test suite."""
     session.install(".")
-    session.install("coverage[toml]", "pytest", "flaky", "pygments")
+    session.install("coverage[toml]", "pytest", "flaky", "pygments", "typeguard")
     try:
         session.run("coverage", "run", "--parallel", "-m", "pytest", *session.posargs)
     finally:

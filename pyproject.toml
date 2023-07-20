@@ -16,7 +16,7 @@ classifiers = [
 Changelog = "https://github.com/boopmail/python-jmap/releases"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 pydantic = "^2.0.2"
 
 [tool.poetry.dev-dependencies]

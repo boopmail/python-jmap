@@ -74,6 +74,7 @@ def test_is_safe() -> None:
     # Unsafe ID: differs only by case
     assert ID.is_safe("abc") is False
     assert ID.is_safe("ABC") is False
+    assert ID.is_safe("ABCabc") is False
 
 
 def test_validate_logs_warning_for_unsafe_id() -> None:
