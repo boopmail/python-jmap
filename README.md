@@ -1,4 +1,11 @@
-# Python JMAP Bindings
+<p align="center">
+  <a href="https://github.com/boopmail/python-jmap" rel="noopener">
+ <img width=200px height=200px src="https://github.com/boopmail/python-jmap/blob/main/docs/python-jmap-logo.png" alt="Python-JMAP logo"></a>
+</p>
+
+<h3 align="center">Python-JMAP</h3>
+
+<div align="center">
 
 [![PyPI](https://img.shields.io/pypi/v/python-jmap.svg)][pypi status]
 [![Status](https://img.shields.io/pypi/status/python-jmap.svg)][pypi status]
@@ -19,53 +26,51 @@
 [pre-commit]: https://github.com/pre-commit/pre-commit
 [black]: https://github.com/psf/black
 
-## Features
+</div>
 
-- TODO
+---
 
-## Requirements
+<p align="center"> Pydantic-enabled client bindings for the JSON Meta Application Protocol (JMAP).
+    <br>
+</p>
 
-- TODO
+## 📝 Table of Contents
 
-## Installation
+- [About](#about)
+- [Usage](#usage)
+- [Built Using](#built_using)
+- [TODO](../TODO.md)
+- [Contributing](../CONTRIBUTING.md)
+- [Authors](#authors)
+- [Acknowledgments](#acknowledgement)
 
-You can install _Python JMAP Bindings_ via [pip] from [PyPI]:
+## 🧐 About <a name = "about"></a>
 
-```console
-$ pip install python-jmap
+Python-JMAP is provides a client interface for the JSON Meta Application Protocol (JMAP), built
+around the data validation and type conversion features of Pydantic. It implements the Core and Mail
+specifications, with Calendar and Contacts on the roadmap.
+
+## 🎈 Usage <a name="usage"></a>
+
+Install with
+
+```shell
+pip install python-jmap
 ```
 
-## Usage
+- [Documentation](https://python-jmap.readthedocs.io/en/latest/)
 
-Please see the [Command-line Reference] for details.
+## ⛏️ Built Using <a name = "built_using"></a>
 
-## Contributing
+- [Pydantic](https://docs.pydantic.dev/latest/) - Pydantic
 
-Contributions are very welcome.
-To learn more, see the [Contributor Guide].
+## ✍️ Authors <a name = "authors"></a>
 
-## License
+- [@openfinch](https://github.com/openfinch) - Idea & Initial work
 
-Distributed under the terms of the [MIT license][license],
-_Python JMAP Bindings_ is free and open source software.
+See also the list of [contributors](https://github.com/boopmail/python-jmap/contributors) who participated in this project.
 
-## Issues
+## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
-If you encounter any problems,
-please [file an issue] along with a detailed description.
-
-## Credits
-
-This project was generated from [@cjolowicz]'s [Hypermodern Python Cookiecutter] template.
-
-[@cjolowicz]: https://github.com/cjolowicz
-[pypi]: https://pypi.org/
-[hypermodern python cookiecutter]: https://github.com/cjolowicz/cookiecutter-hypermodern-python
-[file an issue]: https://github.com/boopmail/python-jmap/issues
-[pip]: https://pip.pypa.io/
-
-<!-- github-only -->
-
-[license]: https://github.com/boopmail/python-jmap/blob/main/LICENSE
-[contributor guide]: https://github.com/boopmail/python-jmap/blob/main/CONTRIBUTING.md
-[command-line reference]: https://python-jmap.readthedocs.io/en/latest/usage.html
+- Repository template - [cjolowicz/cookiecutter-hypermodern-python](https://github.com/cjolowicz/cookiecutter-hypermodern-python)
+- README, PR and Issue templates - [kylelobo/The-Documentation-Compendium](https://github.com/kylelobo/The-Documentation-Compendium)

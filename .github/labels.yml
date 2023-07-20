@@ -61,6 +61,9 @@
 - name: testing
   description: Testing
   color: b1fc6f
+- name: needs triage
+  description: This issue requires triage
+  color: bfd4f2
 - name: wontfix
   description: This will not be worked on
   color: ffffff
