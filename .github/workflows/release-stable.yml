@@ -38,9 +38,8 @@ jobs:
 
       - name: Bump version for release release
         run: |
-          poetry version patch &&
-          version=$(poetry version | awk '{ print $2 }') &&
-          poetry version $version.dev.$(date +%s)
+          version=${GITHUB_REF#refs/*/}
+          poetry version $version
 
       - name: Build package
         run: |
