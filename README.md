@@ -25,6 +25,7 @@
 [codecov]: https://app.codecov.io/gh/boopmail/python-jmap
 [pre-commit]: https://github.com/pre-commit/pre-commit
 [black]: https://github.com/psf/black
+[license]: https://github.com/boopmail/python-jmap/blob/main/LICENSE
 
 </div>
 
